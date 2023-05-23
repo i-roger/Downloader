@@ -5,12 +5,12 @@ def window_init() :
     sg.theme('DarkAmber')
 
     layout = [
-        [sg.Text('Youtube Downloader', justification= 'center', size=(600))],
+        [sg.Text('Video Downloader', justification= 'center', size=(600))],
         [sg.Input(key='link', justification= 'center', size=(600))],
         [sg.Button('Download', expand_x=True), sg.Button('Alterar Diretorio', expand_x=True)]
     ]
 
-    return sg.Window('Youtube Downloader Desenvolvido por: Matheus Roger', layout, size=(600,300))
+    return sg.Window('Video Downloader Desenvolvido por: Matheus Roger', layout, size=(600,300))
 
 window = window_init()
 
