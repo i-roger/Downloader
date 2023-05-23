@@ -20,18 +20,21 @@ while True:
 
     if event == 'Download .MP4': #Faz Download do video e audio (.MP4)
         url = values['link']
-        yt = YouTube(str(url))
-        print("Title:", yt.title)
-        print("View:", yt.views)
-        yd = yt.streams.get_highest_resolution()
-        yd.download('D:\Downloads') # <----- Diretório! ##########################################
-        sg.popup('Download Completo!', 'Nome do Arquivo:', yt.title, 'Visualizações:', yt.views)
+
+        if (url == '') :
+            sg.popup('É necessário digitar a URL do video!!!', title='ERRO!')
+        else :
+            yt = YouTube(str(url))
+
+            yd = yt.streams.get_highest_resolution()
+            yd.download('D:\Downloads') # <----- Diretório! ##########################################
+            sg.popup('Download Completo!', 'Nome do Arquivo:', yt.title, 'Visualizações:', yt.views)
 
     if event == 'Download .MP3': #Faz Download apenas do Audio (.MP3)
         url = values['link']
 
-        if (url == '') : # VALIDAÇÃO CASO URL ESTEJA VAZIA
-            error = sg.popup('É necessário digitar a URL do video!!!')
+        if (url == '') : # VALIDAÇÃO CASO URL ESTEJA VAZIA | FUTURAMENTE UTILIZAR REGEX PARA IDENTIFICAR URL POSITIVA! EXEMPLO: REGEX PATTERN (?:v=|\/)([0-9A-Za-z_-]{11}).*
+            sg.popup('É necessário digitar a URL do video!!!', title='ERRO!')
         else :
             yt = YouTube(str(url))
             
@@ -40,7 +43,6 @@ while True:
             base, ext = os.path.splitext(out_file)
             new_file = base + '.mp3'
             os.rename(out_file, new_file)
-
             sg.popup('Download Completo!', 'Nome do Arquivo:', yt.title, 'Visualizações:', yt.views)
 
         
