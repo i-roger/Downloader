@@ -26,7 +26,7 @@ while True:
             yd = yt.streams.get_highest_resolution()
             destinoDownload = yd.download('D:/Downloads') # <----- Diretório! ##########################################
             sg.popup('Download Completo!', 'Nome do Arquivo:', yt.title, 'Visualizações:', yt.views, 'Arquivo em:', destinoDownload)
-            print('Diretório do Download ========> ', destinoDownload)
+            #print('Diretório do Download ========> ', destinoDownload)
 
     if event == 'Download .MP3':
         videolink = str(values['link'])
@@ -39,7 +39,7 @@ while True:
             stream = yt.streams.get_by_itag(140)
             destinoDownload = stream.download(output_path='D:/Downloads')
             sg.popup('Download do Audio Completo!', 'Nome do Arquivo:', yt.title, 'Visualizações:', yt.views, 'Arquivo em:', destinoDownload)
-            print('Diretório do Download ========> ', destinoDownload)
+            #print('Diretório do Download ========> ', destinoDownload)
 
     if event == sg.WIN_CLOSED:
         window.close()
