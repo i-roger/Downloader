@@ -1,6 +1,5 @@
-import PySimpleGUI as sg
-import os
 from pytube import YouTube
+import PySimpleGUI as sg
 
 def window_init() :
     sg.theme('DarkAmber')
@@ -17,40 +16,30 @@ window = window_init()
 
 while True:
     event, values = window.read()
-
-    if event == 'Download .MP4': #Faz Download do video e audio (.MP4)
-        url = values['link']
-
-        if (url == '') :
+    #CODIGO FUNCIONANDO PORÉM FUNCIONA E DEPOIS PARA DE FUNCIONAR
+    if event == 'Download .MP4': #Trigger do botão DOWNLOAD MP4
+        videolink = str(values['link'])
+        if (videolink == '') :
             sg.popup('É necessário digitar a URL do video!!!', title='ERRO!')
         else :
-            yt = YouTube(str(url))
-
+            yt = YouTube(videolink)
             yd = yt.streams.get_highest_resolution()
-            yd.download('D:\Downloads') # <----- Diretório! ##########################################
-            sg.popup('Download Completo!', 'Nome do Arquivo:', yt.title, 'Visualizações:', yt.views)
+            destinoDownload = yd.download('D:/Downloads') # <----- Diretório! ##########################################
+            sg.popup('Download Completo!', 'Nome do Arquivo:', yt.title, 'Visualizações:', yt.views, 'Arquivo em:', destinoDownload)
+            print('Diretório do Download ========> ', destinoDownload)
 
-    if event == 'Download .MP3': #Faz Download apenas do Audio (.MP3)
-        url = values['link']
-
-        if (url == '') : # VALIDAÇÃO CASO URL ESTEJA VAZIA | FUTURAMENTE UTILIZAR REGEX PARA IDENTIFICAR URL POSITIVA! EXEMPLO: REGEX PATTERN (?:v=|\/)([0-9A-Za-z_-]{11}).*
+    if event == 'Download .MP3':
+        videolink = str(values['link'])
+        if (videolink == ''):
             sg.popup('É necessário digitar a URL do video!!!', title='ERRO!')
-        else :
-            yt = YouTube(str(url))
-            
-            yd = yt.streams.filter(only_audio=True).first()
-            out_file = yd.download('D:\Downloads')
-            base, ext = os.path.splitext(out_file)
-            new_file = base + '.mp3'
-            os.rename(out_file, new_file)
-            sg.popup('Download Completo!', 'Nome do Arquivo:', yt.title, 'Visualizações:', yt.views)
-
-        
-
-    # ALTERAR LOCAL DE DOWNLOAD
-    #if event == 'Alterar Diretorio':
-        #destination = 'D:\Downloads' # ESSA VARIÁVEL SERÁ GLOBAL PARA PODER CONFIGURAR O DESTINO DE TODOS OS EVENTOS.
-
+        else:
+            ### METODO DE DOWNLOAD BASEADO NA DOM DO PYTUBE (AUDIO)
+            yt = YouTube(videolink)
+            yt.streams.filter(only_audio=True)
+            stream = yt.streams.get_by_itag(140)
+            destinoDownload = stream.download(output_path='D:/Downloads')
+            sg.popup('Download do Audio Completo!', 'Nome do Arquivo:', yt.title, 'Visualizações:', yt.views, 'Arquivo em:', destinoDownload)
+            print('Diretório do Download ========> ', destinoDownload)
 
     if event == sg.WIN_CLOSED:
         window.close()
