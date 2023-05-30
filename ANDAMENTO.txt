@@ -1,0 +1,8 @@
+Bibliotecas Utilizadas :
+ - PySimpleGUI
+ - pytube
+ - pyinstaller (CRIA UM BUNDLE, COMO UM PORTABLE APP)
+
+########## Gerando app.EXE para distribuição #############
+Basta digitar o comando abaixo para utilizar o pyinstaller:
+===> pyinstaller --onefile --noconsole NomeDoApp.py
