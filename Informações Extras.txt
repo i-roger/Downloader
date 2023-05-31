@@ -1,0 +1,15 @@
+30.05.2023 -> Nova atualização utilizei CUSTOMTKINTER PARA INTERFACE GRÁFICA
+
+30.05.2023 -> PARA CRIAR O .EXE USANDO CUSTOMTKINTER É NECESSÁRIO USAR O COMANDO ABAIXO :
+pyinstaller --noconfirm --onedir --windowed --add-data "C:/Users/Fox/AppData/Local/Programs/Python/Python311/Lib/site-packages/customtkinter;customtkinter/" "D:/Developer/Projetos Python/video-downloader/DownloaderByMatheusRoger.py"  
+
+##################################
+Inicio do Projeto (OLD)
+Bibliotecas Utilizadas :
+ - PySimpleGUI
+ - pytube
+ - pyinstaller (CRIA UM BUNDLE, COMO UM PORTABLE APP)
+
+########## Gerando app.EXE para distribuição #############
+Basta digitar o comando abaixo para utilizar o pyinstaller:
+===> pyinstaller --onefile --noconsole NomeDoApp.py

@@ -2,4 +2,4 @@
 pip list
 
 # Instalar CustomTkinter
-pip install customtkinter
+pip install customtkinter, pytube
