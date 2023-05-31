@@ -1,0 +1,5 @@
+# PARA VERIFICAR INSTALAÇÕES
+pip list
+
+# Instalar CustomTkinter
+pip install customtkinter

@@ -1,3 +1,6 @@
+30.05.2023 -> Nova atualização utilizei CUSTOMTKINTER PARA INTERFACE GRÁFICA
+
+
 Bibliotecas Utilizadas :
  - PySimpleGUI
  - pytube
